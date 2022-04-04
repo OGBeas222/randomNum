@@ -1,0 +1,31 @@
+.img{
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    transition: all .3s linear;
+    cursor: pointer;
+    background-color: black;
+}
+
+
+
+.wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title{
+    display: inline-block;
+    position: relative;
+    right: -50%;
+    transform: translateX(-50%);
+    margin-bottom: 43px;
+}
+button{
+    display: inline-block;
+    position: relative;
+    right: -50%;
+    transform: translateX(-50%);
+}
