@@ -1,5 +1,7 @@
 body{
     font-size: 18px;
+    background-color: #ccc;
+    font-family: 'Roboto', sans-serif;
 }
 
 .container{
@@ -12,10 +14,28 @@ body{
 }
 
 .title{
+    padding-top: 25px;
     margin-bottom: 35px;
     font-weight: 700;
     font-size: 28px;
+
 }
+
+
+.btn{
+    border-radius: 12px;
+    color:#fff;
+    background-color:black;
+    padding: 14px 32px;
+    margin-bottom: 4px;
+    border: 3px solid white;
+}
+
+.form-inner{
+    display: flex;
+    align-items: center;
+}
+
 
 .input{
     color:#121212;
@@ -23,6 +43,7 @@ body{
     border-radius: 12px;
     border: 2px solid black;
     font-size: 22px;
+    margin-right: 7px;
 }
 
 .form{
@@ -52,4 +73,23 @@ body{
 
 .resultParas{
     min-width: 555px;
+}
+
+
+button {
+    max-width: 100px;
+}
+
+@media (max-width: 1024px) {
+    .title{
+        margin-bottom: 15px;
+    }
+    .text{
+        margin-bottom: 15px;
+        max-width: 770px;
+    }
+
+    .form{
+        margin-bottom: 23px;
+    }
 }
