@@ -14,8 +14,8 @@ let guessCount = 1;
 const isResizeble = false;
 
 function setGameOver() {
-    // input.disabled = true;
-    // btn.disabled = true;
+    input.disabled = true;
+    btn.disabled = true;
     resetButton = document.createElement('button');
     resetButton.textContent = 'Start new game';
     document.body.appendChild(resetButton);
@@ -37,8 +37,8 @@ function checkGuess() {
         lastResult.style.backgroundColor = 'green';
         lowOrHi.textContent = '';
         // setGameOver();
-        // input.disabled = true;
-        // btn.disabled = true;
+        input.disabled = true;
+        btn.disabled = true;
         alert('Great, You win this game');
         if(!isResizeble) {
             resetButton = document.createElement('button');
@@ -56,20 +56,26 @@ function checkGuess() {
     } else if (guessCount === Guesses || guessCount == 11)  {
         lastResult.textContent = '!!!GAME OVER!!!';
         setGameOver();
-
-    } else if (guessCount <= 11) {
+    } else if (guessCount < 11) {
         lastResult.textContent = 'Wrong!';
         lastResult.style.backgroundColor = 'red';
-        if(userGuess < randomNumber) {
-            lowOrHi.textContent = 'Last guess was too low!';
-        } else if(userGuess > randomNumber) {
+        if(userGuess == 0  ||  userGuess <= 0) {
+            alert( 'Last guess was too, too low!');
+        } else if( userGuess > 100) {
+            lowOrHi.textContent = 'Last guess was too, too high!';
+            alert('Last guess was too, too high!');
+        }
+        else if(userGuess < randomNumber  ) {
+            lowOrHi.textContent = 'Last guess was too low!!';
+        }
+        else if(userGuess > randomNumber ) {
             lowOrHi.textContent = 'Last guess was too high!';
         }
     }
 
     guessCount++;
     input.value = '';
-    // input.focus();
+    input.focus();
 }
 
 function resetGame() {
