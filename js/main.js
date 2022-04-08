@@ -1,38 +1,97 @@
+let input = document.querySelector('.input');
+let btn = document.querySelector('.btn');
+let lastResult = document.querySelector('.lastResult');
+let lowOrHi = document.querySelector('.lowOrHi');
+let answerUser = document.querySelector('.answers-user');
+console.log(answerUser);
+let userGuess = Number(input.value);
 
-let myTitle = document.querySelector('.title');
-myTitle.textContent = 'Hello World!'
+const resetParas = document.querySelectorAll('.resultParas p');
+const space = '';
+let Guesses = 10;
+let randomNumber = Math.floor(Math.random() * 100) + 1;
+let guessCount = 1;
+const isResizeble = false;
 
-
-
-
-let myImage = document.querySelector('img')
-let mySrc = myImage.src;
-myImage.onclick = () =>{
-
-    let mySrc2 = myImage.src;
-    let imgOne = 'img/ric.jpg';
-    let imgTwo = 'img/ric1.jpg';
-
-
+function setGameOver() {
+    // input.disabled = true;
+    // btn.disabled = true;
+    resetButton = document.createElement('button');
+    resetButton.textContent = 'Start new game';
+    document.body.appendChild(resetButton);
+    resetButton.addEventListener('click', resetGame);
+    answerUser.textContent += userGuess + ' ';
+    console.log(guessCount);
+    randomNumber = Math.floor(Math.random() * 100) + 1;
 }
-let i=0;
-let imgs= new Array('img/&Изображение2.jpg','img/&Изображение3.jpg','img/&Изображение3.jpg','img/&Изображение4.jpg', 'img/&Изображение5.jpg','img/&Изображение6.jpg',
-    'img/&Изображение6.jpg','img/&Изображение7.jpg','img/&Изображение8.jpg','img/&Изображение9.jpg','img/&Изображение10.jpg','img/&Изображение11.jpg','img/&Изображение12.jpg','img/&Изображение13.jpg',
-    'img/&Изображение14.jpg', 'img/&Изображение15.jpg', 'img/&Изображение16.jpg', 'img/&Изображение17.jpg',  'img/&Изображение18.jpg', 'img/&Изображение19.jpg','img/&Изображение20.jpg',
-    'img/&Изображение21.jpg', 'img/&Изображение22.jpg',  'img/&Изображение23.jpg','img/&Изображение24.jpg','img/&Изображение25.jpg','img/&Изображение26.jpg','img/&Изображение27.jpg',
-    'img/&Изображение28.jpg', 'img/&Изображение29.jpg')
-let j=imgs.length;
- imgsrc = () =>{
-    if (i!=(j-1)){
-        {i++;}
-        myImage.src=imgs[i];
-    }else{
-        i = 0;
+
+function checkGuess() {
+    let userGuess = Number(input.value);
+    if (guessCount === 1) {
+        answerUser.textContent = 'Previous guesses: ';
+    }
+    answerUser.textContent += userGuess + ' ';
+
+    if (userGuess === randomNumber) {
+        lastResult.textContent = 'Congratulations! You got it right!';
+        lastResult.style.backgroundColor = 'green';
+        lowOrHi.textContent = '';
+        // setGameOver();
+        // input.disabled = true;
+        // btn.disabled = true;
+        alert('Great, You win this game');
+        if(!isResizeble) {
+            resetButton = document.createElement('button');
+            resetButton.textContent = 'Start new game';
+            document.body.appendChild(resetButton);
+            resetButton.addEventListener('click', resetGame);
+            answerUser.textContent += userGuess + ' ';
+            isRezeble = true;
+        }
+    } else if (guessCount === Guesses - 1) {
+        alert('We added one chance')
+        Guesses  =  Guesses + 1;
+        guessCount  =  guessCount + 1;
+        console.log(guessCount);
+    } else if (guessCount === Guesses || guessCount == 11)  {
+        lastResult.textContent = '!!!GAME OVER!!!';
+        setGameOver();
+
+    } else if (guessCount <= 11) {
+        lastResult.textContent = 'Wrong!';
+        lastResult.style.backgroundColor = 'red';
+        if(userGuess < randomNumber) {
+            lowOrHi.textContent = 'Last guess was too low!';
+        } else if(userGuess > randomNumber) {
+            lowOrHi.textContent = 'Last guess was too high!';
+        }
     }
 
-
+    guessCount++;
+    input.value = '';
+    // input.focus();
 }
 
-myImage.onclick = ()=>{
-    setInterval(imgsrc, 150);
+function resetGame() {
+    guessCount = 1;
+    resetText ();
+    resetButton.parentNode.removeChild(resetButton);
+    input.disabled = false;
+    btn.disabled = false;
+    input.value = '';
+    input.focus();
+    lastResult.style.backgroundColor = 'white';
+    randomNumber = Math.floor(Math.random() * 100) + 1;
 }
+
+console.log(randomNumber);
+
+function resetText (){
+    for (let i = 0 ; i < resetParas.length ; i++) {
+        resetParas[i].textContent = space ;
+    }
+    setTimeout(() => answerUser.textContent = 'Previous guesses: ', 0);
+}
+
+btn.addEventListener('click', checkGuess);
+

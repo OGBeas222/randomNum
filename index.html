@@ -2,21 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>рикардо</title>
+    <title>Guess</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <div class="container">
-    <h1 class="title">
-        JavaScript
-    </h1>
-    <div class="wrapper">
-        <img class="img img-2" width="300" height="268" src="img/&Изображение2.jpg" alt="" >
+        <h1 class="title">
+            Number guessing game
+        </h1>
+    <p class="text">
+        We have selected a random number between 1 and 100.
+        See if you can guess it in 10 turns or less.
+        We'll tell you if your guess was too high or too low.
+    </p>
+    <div class="form">
+        <p class="text-label">
+            Enter a guess:
+        </p>
+        <input type="text" id="one"  class="input">
+        <input type="submit" class="btn">
     </div>
-    <button>
-        click
-    </button>
+        <div class="resultParas">
+            <p class="answers-user">Previous guesses: </p>
+            <p class="lastResult"></p>
+            <p class="lowOrHi"></p>
+        </div>
 </div>
 
 <script src="js/main.js"></script>
